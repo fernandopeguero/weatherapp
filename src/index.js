@@ -21,8 +21,17 @@ function weatherApp() {
         }
     }
 
+    function getDayByDate(date) {
+        const currentDate = new Date(date);
+
+        console.log(currentDate.getDay());
+
+        return currentDate.getDay();
+    }
+
     return {
         getWeatherData,
+        getDayByDate,
     };
 }
 
@@ -37,3 +46,4 @@ function weatherScreenController() {
 const weather = weatherApp();
 
 weather.getWeatherData("bronx");
+weather.getDayOfWeek("2025-01-20");
