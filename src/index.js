@@ -29,9 +29,42 @@ function weatherApp() {
         return currentDate.getDay();
     }
 
+    function getDayOfTheWeek(day) {
+        let dayString = "";
+
+        switch (day) {
+            case 0:
+                dayString = "Monday";
+                break;
+            case 1:
+                dayString = "Tuesday";
+                break;
+            case 2:
+                dayString = "Wednesday";
+                break;
+            case 3:
+                dayString = "Thrusday";
+                break;
+            case 4:
+                dayString = "Friday";
+                break;
+            case 5:
+                dayString = "Saturday";
+                break;
+            case 6:
+                dayString = "Sunday";
+                break;
+            default:
+                dayString = "Unknown";
+        }
+
+        return dayString;
+    }
+
     return {
         getWeatherData,
         getDayByDate,
+        getDayOfTheWeek,
     };
 }
 
@@ -44,6 +77,3 @@ function weatherScreenController() {
 }
 
 const weather = weatherApp();
-
-weather.getWeatherData("bronx");
-weather.getDayOfWeek("2025-01-20");
