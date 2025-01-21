@@ -15,7 +15,7 @@ function weatherApp() {
 
             const data = await resultData.json();
 
-            console.log(data);
+            return data;
         } catch (error) {
             console.log(error);
         }
@@ -23,8 +23,6 @@ function weatherApp() {
 
     function getDayByDate(date) {
         const currentDate = new Date(date);
-
-        console.log(currentDate.getDay());
 
         return currentDate.getDay();
     }
@@ -61,15 +59,46 @@ function weatherApp() {
         return dayString;
     }
 
+    function getWeekWeatherData(data) {
+        const days = {};
+
+        console.log(data);
+        for (let i = 1; i <= 6; i++) {
+            const current = data.days[i];
+            console.log(data.days[i]);
+            const dayOfTheWeek = weather.getDayOfTheWeek(
+                weather.getDayByDate(current.datetime)
+            );
+
+            days[dayOfTheWeek] = current;
+        }
+
+        return days;
+    }
+
     return {
         getWeatherData,
         getDayByDate,
         getDayOfTheWeek,
+        getWeekWeatherData,
     };
 }
 
 function weatherAppController() {
-    return {};
+    const weather = weatherApp();
+
+    async function getWeatherData(location) {
+        const data = await weather.getWeatherData(location);
+
+        const days = weather.getWeekWeatherData(data);
+
+        console.log(days);
+        return days;
+    }
+
+    return {
+        getWeatherData,
+    };
 }
 
 function weatherScreenController() {
@@ -77,3 +106,7 @@ function weatherScreenController() {
 }
 
 const weather = weatherApp();
+
+const weatherController = weatherAppController();
+
+weatherController.getWeatherData("bronx");
