@@ -1,6 +1,10 @@
 import { childAppender } from "../util";
 import "./style.css";
 
+// weather icons
+
+import sunny from "./icons/sunny.svg";
+
 function weatherApp() {
     async function getWeatherData(local) {
         const publicKey = "CWZPRKA3QEL8A7U7HNW4HGMC6";
@@ -116,11 +120,13 @@ async function weatherScreenController() {
         const currentWeather = data.days[0];
 
         const detailsHolder = document.createElement("section");
-        detailsHolder.classList.add("details_contianer");
+        detailsHolder.classList.add("weather_container");
 
         const temperaturDetails = temperatureComponent(currentWeather);
 
-        childAppender(detailsHolder, temperaturDetails);
+        const weatherIcon = currentWeatherIcon(currentWeather);
+
+        childAppender(detailsHolder, temperaturDetails, weatherIcon);
 
         return detailsHolder;
     }
@@ -143,6 +149,15 @@ async function weatherScreenController() {
         childAppender(temperateDetails, location, temperature, description);
 
         return temperateDetails;
+    }
+
+    // current trend details
+
+    function currentWeatherIcon(data) {
+        const icon = document.createElement("img");
+        icon.src = sunny;
+
+        return icon;
     }
 
     function displayCurrentWeatherTrends() {}
