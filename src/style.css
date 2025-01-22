@@ -30,4 +30,11 @@ html {
     --color-lightblue: #9ACBD0;
     --color-turquoise: #48A6A7;
     --color-darkblue: #2973B2;
+
+    /* padding size  */
+
+    --pd-small: 8px;
+    --pd-medium: 16px;
+    --pd-large: 32px;
+    --pd-extra-large: 56px;
   }
