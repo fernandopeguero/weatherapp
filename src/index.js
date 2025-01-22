@@ -1,3 +1,5 @@
+import "./style.css";
+
 function weatherApp() {
     async function getWeatherData(local) {
         const publicKey = "CWZPRKA3QEL8A7U7HNW4HGMC6";
