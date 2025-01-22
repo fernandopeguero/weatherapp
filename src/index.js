@@ -114,6 +114,16 @@ function weatherScreenController() {
 
     const weatherData = weatherController.getWeatherData(currentLocation);
 
+    function displayWeatherDetails() {}
+
+    function displayCurrentWeatherTrends() {}
+
+    function displayDaysOfWeekWeather() {}
+
+    function displaySunsetAndSunriseDetails() {}
+
+    function displaySubSectionDetails(section) {}
+
     return {};
 }
 
