@@ -21,3 +21,13 @@ html {
     max-width: 100%;
     height: auto;
   }
+
+
+  :root {
+    /* color palette */
+
+    --color-white: #F2EFE7;
+    --color-lightblue: #9ACBD0;
+    --color-turquoise: #48A6A7;
+    --color-darkblue: #2973B2;
+  }
