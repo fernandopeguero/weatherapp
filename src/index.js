@@ -1,3 +1,4 @@
+import { childAppender } from "../util";
 import "./style.css";
 
 function weatherApp() {
@@ -89,32 +90,52 @@ function weatherApp() {
 function weatherAppController() {
     const weather = weatherApp();
 
-    let daysOfTheWeekWeather = null;
-
     async function getWeatherData(location) {
         const data = await weather.getWeatherData(location);
 
-        daysOfTheWeekWeather = weather.getWeekWeatherData(data);
+        console.log(data);
 
         return data;
     }
 
     return {
         getWeatherData,
-        daysOfTheWeekWeather,
     };
 }
 
-function weatherScreenController() {
+async function weatherScreenController() {
     const body = document.querySelector("body");
 
     const weatherController = weatherAppController();
 
     let currentLocation = "bronx";
 
-    const weatherData = weatherController.getWeatherData(currentLocation);
+    const weatherData = await weatherController.getWeatherData(currentLocation);
 
-    function displayWeatherDetails() {}
+    function displayWeatherDetails() {
+        const currentWeather = weatherData.days[0];
+
+        const detailsHolder = document.createElement("section");
+        detailsHolder.classList.add("details_contianer");
+
+        const temperateDetails = document.createElement("div");
+        temperateDetails.classList.add("temperature_details");
+
+        const location = document.createElement("h1");
+        location.textContent = weatherData.address;
+
+        const temperature = document.createElement("h2");
+        temperature.textContent = currentWeather.temp;
+
+        const description = document.createElement("p");
+        description.textContent = currentWeather.description;
+
+        childAppender(temperateDetails, location, temperature, description);
+
+        childAppender(detailsHolder, temperateDetails);
+
+        return detailsHolder;
+    }
 
     function displayCurrentWeatherTrends() {}
 
@@ -124,7 +145,17 @@ function weatherScreenController() {
 
     function displaySubSectionDetails(section) {}
 
-    return {};
+    function buildWeatherAppScreen() {
+        const details = displayWeatherDetails();
+
+        body.textContent = "";
+        childAppender(body, details);
+    }
+
+    // buildWeatherAppScreen();
+    return {
+        buildWeatherAppScreen,
+    };
 }
 
-const weatherScreen = weatherScreenController();
+weatherScreenController().then((data) => data.buildWeatherAppScreen());
