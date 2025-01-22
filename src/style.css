@@ -42,4 +42,5 @@ html {
 
   body {
     background-color: var(--color-darkblue);
+    height: 100vh;
   }
