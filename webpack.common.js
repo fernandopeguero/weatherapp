@@ -31,15 +31,6 @@ module.exports = {
                 type: "javascript/auto",
                 use: ["file-loader"],
             },
-            {
-                test: /\.(mp3)$/,
-                use: {
-                    loader: "file-loader",
-                    options: {
-                        name: "[path][name].[ext]", // This keeps the original file name and extension
-                    },
-                },
-            },
         ],
     },
 };
