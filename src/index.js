@@ -2,6 +2,7 @@ function weatherApp() {
     async function getWeatherData(local) {
         const publicKey = "CWZPRKA3QEL8A7U7HNW4HGMC6";
         const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${local}?key=${publicKey}`;
+
         try {
             const resultData = await fetch(url, {
                 mode: "cors",
@@ -62,10 +63,9 @@ function weatherApp() {
     function getWeekWeatherData(data) {
         const days = {};
 
-        console.log(data);
         for (let i = 1; i <= 6; i++) {
             const current = data.days[i];
-            console.log(data.days[i]);
+
             const dayOfTheWeek = weather.getDayOfTheWeek(
                 weather.getDayByDate(current.datetime)
             );
@@ -87,13 +87,17 @@ function weatherApp() {
 function weatherAppController() {
     const weather = weatherApp();
 
+    let daysOfTheWeekWeather = null;
+
     async function getWeatherData(location) {
         const data = await weather.getWeatherData(location);
 
-        const days = weather.getWeekWeatherData(data);
+        daysOfTheWeekWeather = weather.getWeekWeatherData(data);
 
-        console.log(days);
-        return days;
+        console.log(data);
+        return {
+            todayWeather: data.days[0],
+        };
     }
 
     return {
