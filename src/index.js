@@ -112,12 +112,22 @@ async function weatherScreenController() {
 
     const weatherData = await weatherController.getWeatherData(currentLocation);
 
-    function displayWeatherDetails() {
-        const currentWeather = weatherData.days[0];
+    function displayWeatherDetails(data) {
+        const currentWeather = data.days[0];
 
         const detailsHolder = document.createElement("section");
         detailsHolder.classList.add("details_contianer");
 
+        const temperaturDetails = temperatureComponent(currentWeather);
+
+        childAppender(detailsHolder, temperaturDetails);
+
+        return detailsHolder;
+    }
+
+    // temperature display function
+
+    function temperatureComponent(data) {
         const temperateDetails = document.createElement("div");
         temperateDetails.classList.add("temperature_details");
 
@@ -125,16 +135,14 @@ async function weatherScreenController() {
         location.textContent = weatherData.address;
 
         const temperature = document.createElement("h2");
-        temperature.textContent = currentWeather.temp;
+        temperature.textContent = data.temp;
 
         const description = document.createElement("p");
-        description.textContent = currentWeather.description;
+        description.textContent = data.description;
 
         childAppender(temperateDetails, location, temperature, description);
 
-        childAppender(detailsHolder, temperateDetails);
-
-        return detailsHolder;
+        return temperateDetails;
     }
 
     function displayCurrentWeatherTrends() {}
@@ -146,7 +154,7 @@ async function weatherScreenController() {
     function displaySubSectionDetails(section) {}
 
     function buildWeatherAppScreen() {
-        const details = displayWeatherDetails();
+        const details = displayWeatherDetails(weatherData);
 
         body.textContent = "";
         childAppender(body, details);
