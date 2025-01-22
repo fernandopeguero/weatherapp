@@ -66,8 +66,8 @@ function weatherApp() {
         for (let i = 1; i <= 6; i++) {
             const current = data.days[i];
 
-            const dayOfTheWeek = weather.getDayOfTheWeek(
-                weather.getDayByDate(current.datetime)
+            const dayOfTheWeek = getDayOfTheWeek(
+                getDayByDate(current.datetime)
             );
 
             days[dayOfTheWeek] = current;
@@ -94,23 +94,25 @@ function weatherAppController() {
 
         daysOfTheWeekWeather = weather.getWeekWeatherData(data);
 
-        console.log(data);
-        return {
-            todayWeather: data.days[0],
-        };
+        return data;
     }
 
     return {
         getWeatherData,
+        daysOfTheWeekWeather,
     };
 }
 
 function weatherScreenController() {
+    const body = document.querySelector("body");
+
+    const weatherController = weatherAppController();
+
+    let currentLocation = "bronx";
+
+    const weatherData = weatherController.getWeatherData(currentLocation);
+
     return {};
 }
 
-const weather = weatherApp();
-
-const weatherController = weatherAppController();
-
-weatherController.getWeatherData("bronx");
+const weatherScreen = weatherScreenController();
