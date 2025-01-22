@@ -83,11 +83,19 @@ function weatherApp() {
         return days;
     }
 
+    function formatWeatherTime(data) {
+        // split the time and convert it to a int
+        const time = Number(data.split(":")[0]);
+
+        return time <= 12 ? time + " AM" : time - 12 + " PM";
+    }
+
     return {
         getWeatherData,
         getDayByDate,
         getDayOfTheWeek,
         getWeekWeatherData,
+        formatWeatherTime,
     };
 }
 
@@ -102,8 +110,12 @@ function weatherAppController() {
         return data;
     }
 
+    function formatTime(time) {
+        return weather.formatWeatherTime(time);
+    }
     return {
         getWeatherData,
+        formatTime,
     };
 }
 
@@ -160,7 +172,36 @@ async function weatherScreenController() {
         return icon;
     }
 
-    function displayCurrentWeatherTrends() {}
+    // the current day weather by hour
+    function displayCurrentWeatherTrends(data) {
+        const currentDay = data.days[0];
+
+        const weatherTrendContainer = document.createElement("section");
+        weatherTrendContainer.classList.add("weather_trend_container");
+
+        const weatherTime = createTimeList(currentDay);
+
+        childAppender(weatherTrendContainer, weatherTime);
+
+        return weatherTrendContainer;
+    }
+
+    function createTimeList(data) {
+        const timeList = data.hours;
+
+        const timeContainer = document.createElement("div");
+        timeContainer.classList.add("time_container");
+
+        for (const time of timeList) {
+            console.log(time);
+            const h4 = document.createElement("h4");
+            h4.textContent = weatherController.formatTime(time.datetime);
+
+            timeContainer.appendChild(h4);
+        }
+
+        return timeContainer;
+    }
 
     function displayDaysOfWeekWeather() {}
 
@@ -170,9 +211,10 @@ async function weatherScreenController() {
 
     function buildWeatherAppScreen() {
         const details = displayWeatherDetails(weatherData);
+        const weatherTrend = displayCurrentWeatherTrends(weatherData);
 
         body.textContent = "";
-        childAppender(body, details);
+        childAppender(body, details, weatherTrend);
     }
 
     // buildWeatherAppScreen();
