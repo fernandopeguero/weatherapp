@@ -181,7 +181,9 @@ async function weatherScreenController() {
 
         const weatherTime = createTimeList(currentDay);
 
-        childAppender(weatherTrendContainer, weatherTime);
+        const todayWeatherTrend = weatherTrendByHour();
+
+        childAppender(weatherTrendContainer, weatherTime, todayWeatherTrend);
 
         return weatherTrendContainer;
     }
@@ -203,6 +205,15 @@ async function weatherScreenController() {
         return timeContainer;
     }
 
+    function weatherTrendByHour() {
+        const canvas = document.createElement("canvas");
+        canvas.id = "myCanvas";
+        canvas.width = "200";
+        canvas.height = "200";
+
+        return canvas;
+    }
+
     function displayDaysOfWeekWeather() {}
 
     function displaySunsetAndSunriseDetails() {}
@@ -213,7 +224,7 @@ async function weatherScreenController() {
         const details = displayWeatherDetails(weatherData);
         const weatherTrend = displayCurrentWeatherTrends(weatherData);
 
-        body.textContent = "";
+        body.innerHTML = "";
         childAppender(body, details, weatherTrend);
     }
 
