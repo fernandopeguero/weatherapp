@@ -4,6 +4,7 @@ import "./style.css";
 // weather icons
 
 import sunny from "./icons/sunny.svg";
+import waterDrop from "./icons/water_drop.svg";
 
 function weatherApp() {
     async function getWeatherData(local) {
@@ -181,9 +182,16 @@ async function weatherScreenController() {
 
         const weatherTime = createTimeList(currentDay);
 
-        const todayWeatherTrend = weatherTrendByHour();
+        const todayWeatherTrend = weatherTrendByHour(currentDay);
 
-        childAppender(weatherTrendContainer, weatherTime, todayWeatherTrend);
+        const rainPercentage = rainPercetageByHour(currentDay);
+
+        childAppender(
+            weatherTrendContainer,
+            weatherTime,
+            todayWeatherTrend,
+            rainPercentage
+        );
 
         return weatherTrendContainer;
     }
@@ -195,7 +203,6 @@ async function weatherScreenController() {
         timeContainer.classList.add("time_container");
 
         for (const time of timeList) {
-            console.log(time);
             const h4 = document.createElement("h4");
             h4.textContent = weatherController.formatTime(time.datetime);
 
@@ -205,13 +212,41 @@ async function weatherScreenController() {
         return timeContainer;
     }
 
-    function weatherTrendByHour() {
+    // display the curve in precipitation of the weather
+
+    function weatherTrendByHour(data) {
         const canvas = document.createElement("canvas");
         canvas.id = "myCanvas";
         canvas.width = "200";
         canvas.height = "200";
 
         return canvas;
+    }
+
+    // display the weather precipitation percentage and icon
+
+    function rainPercetageByHour(data) {
+        const timeList = data.hours;
+
+        const percentageContainer = document.createElement("div");
+        percentageContainer.classList.add("percentage_container");
+
+        for (const time of timeList) {
+            const percentageHolder = document.createElement("div");
+            percentageHolder.classList.add("percentage_holder");
+
+            const text = document.createElement("p");
+            text.textContent = time.precip + "%";
+
+            const waterIcon = document.createElement("img");
+            waterIcon.src = waterDrop;
+
+            childAppender(percentageHolder, waterIcon, text);
+
+            percentageContainer.appendChild(percentageHolder);
+        }
+
+        return percentageContainer;
     }
 
     function displayDaysOfWeekWeather() {}
