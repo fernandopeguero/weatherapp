@@ -56,3 +56,28 @@ html {
       height: auto;
     }
   }
+
+  .weather_trend_container {
+
+
+    .time_container {
+      display: flex;
+
+      justify-content: space-between;
+    }
+
+    canvas {
+      width: 100%;
+      height: 200px;
+    }
+
+    .percentage_container {
+      display: flex;  
+      justify-content: space-between;
+
+      .percentage_holder {
+        
+        display: flex;
+      }
+    }
+  }

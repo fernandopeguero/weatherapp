@@ -9,7 +9,7 @@ import waterDrop from "./icons/water_drop.svg";
 function weatherApp() {
     async function getWeatherData(local) {
         const publicKey = "CWZPRKA3QEL8A7U7HNW4HGMC6";
-        const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${local}?key=${publicKey}`;
+        const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${local}?key=${publicKey}&elements=%2Baqius`;
 
         try {
             const resultData = await fetch(url, {
@@ -247,6 +247,63 @@ async function weatherScreenController() {
         }
 
         return percentageContainer;
+    }
+
+    function displayWeatherConditions() {}
+
+    function weatherConditionDetails(icon, text, data) {
+        const container = document.createElement("div");
+
+        const topBar = document.createElement("div");
+
+        const img = document.createElement("img");
+        img.src = icon;
+
+        const title = document.createElement("h3");
+        title.textContent = text;
+
+        childAppender(topBar, img, title);
+
+        const info = document.createElement("h4");
+
+        switch (text.toLowercase()) {
+            case "uvindex":
+                if (data <= 2) {
+                    info.textContent = "Low";
+                } else if (data >= 3 && data <= 5) {
+                    info.textContent = "Moderate";
+                } else {
+                    info.textContent = "High";
+                }
+
+                break;
+            case "windspeed":
+                info.textContent = data + " Mph";
+                break;
+            case "humidity":
+                info.textContent = data + "%";
+                break;
+            case "pressure":
+                // convert milibars to inches by multiplying by 0.0295301
+                info.textContent = data * 0.0295301 + "in";
+                break;
+            case "visibility":
+                info.textContent = data;
+                break;
+            case "air quality":
+                if (data < 50) {
+                    info.textContent = "Good";
+                } else if (data < 100) {
+                    info.textContent = "Moderate";
+                } else {
+                    info.textContent = "Bad";
+                }
+                break;
+        }
+
+        childAppender(container, topBar, info);
+
+        return container;
     }
 
     function displayDaysOfWeekWeather() {}
