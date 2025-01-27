@@ -81,3 +81,25 @@ html {
       }
     }
   }
+
+
+  .weather_details_container {
+    display: flex;
+    justify-content: space-around;
+
+    .details_container {
+
+      background-color: rgba(14, 47, 132, 0.5);
+      padding: var(--pd-medium);
+      border-radius: var(--pd-small);
+      
+      div {
+        display: flex;
+        gap: 5px;
+      }
+
+      h4 {
+        padding-top: var(--pd-medium);
+      }
+    }
+  }

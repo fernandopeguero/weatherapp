@@ -309,6 +309,7 @@ async function weatherScreenController() {
 
     function weatherConditionDetails(icon, text, data) {
         const container = document.createElement("div");
+        container.classList.add("details_container");
 
         const topBar = document.createElement("div");
 
