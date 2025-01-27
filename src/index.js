@@ -320,7 +320,7 @@ async function weatherScreenController() {
                 break;
             case "pressure":
                 // convert milibars to inches by multiplying by 0.0295301
-                info.textContent = data * 0.0295301 + "in";
+                info.textContent = (data * 0.0295301).toFixed(2) + " in";
                 break;
             case "visibility":
                 info.textContent = data;
