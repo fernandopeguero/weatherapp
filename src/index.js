@@ -269,7 +269,13 @@ async function weatherScreenController() {
             data.windspeed
         );
 
-        childAppender(container, uvIndex, windSpeed);
+        const humidity = weatherConditionDetails(
+            humidityIcon,
+            "Humidity",
+            data.humidity
+        );
+
+        childAppender(container, uvIndex, windSpeed, humidity);
 
         return container;
     }
