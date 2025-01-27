@@ -8,6 +8,7 @@ import waterDrop from "./icons/water_drop.svg";
 import humidityIcon from "./icons/humidity.svg";
 import pressureIcon from "./icons/pressure.svg";
 import visibilityIcon from "./icons/visibility.svg";
+import windSpeedIcon from "./icons/air.svg";
 
 function weatherApp() {
     async function getWeatherData(local) {
@@ -262,7 +263,13 @@ async function weatherScreenController() {
             data.uvindex
         );
 
-        childAppender(container, uvIndex);
+        const windSpeed = weatherConditionDetails(
+            windSpeedIcon,
+            "Wind Speed",
+            data.windspeed
+        );
+
+        childAppender(container, uvIndex, windSpeed);
 
         return container;
     }
@@ -293,7 +300,7 @@ async function weatherScreenController() {
                 }
 
                 break;
-            case "windspeed":
+            case "wind speed":
                 info.textContent = data + " Mph";
                 break;
             case "humidity":
