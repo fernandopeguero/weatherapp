@@ -281,7 +281,20 @@ async function weatherScreenController() {
             data.pressure
         );
 
-        childAppender(container, uvIndex, windSpeed, humidity, pressure);
+        const visibility = weatherConditionDetails(
+            visibilityIcon,
+            "Visibility",
+            data.visibility
+        );
+
+        childAppender(
+            container,
+            uvIndex,
+            windSpeed,
+            humidity,
+            pressure,
+            visibility
+        );
 
         return container;
     }
