@@ -256,7 +256,7 @@ async function weatherScreenController() {
 
     function displayWeatherConditions(data) {
         const container = document.createElement("div");
-        console.log(data);
+        container.classList.add("weather_details_container");
 
         const uvIndex = weatherConditionDetails(
             sunny,
