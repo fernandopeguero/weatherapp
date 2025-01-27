@@ -9,6 +9,7 @@ import humidityIcon from "./icons/humidity.svg";
 import pressureIcon from "./icons/pressure.svg";
 import visibilityIcon from "./icons/visibility.svg";
 import windSpeedIcon from "./icons/air.svg";
+import airWaveIcon from "./icons/air_wave.svg";
 
 function weatherApp() {
     async function getWeatherData(local) {
@@ -287,13 +288,20 @@ async function weatherScreenController() {
             data.visibility
         );
 
+        const airQuality = weatherConditionDetails(
+            airWaveIcon,
+            "Air Quality",
+            data.aqius
+        );
+
         childAppender(
             container,
             uvIndex,
             windSpeed,
             humidity,
             pressure,
-            visibility
+            visibility,
+            airQuality
         );
 
         return container;
