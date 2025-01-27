@@ -156,7 +156,7 @@ async function weatherScreenController() {
         temperateDetails.classList.add("temperature_details");
 
         const location = document.createElement("h1");
-        location.textContent = weatherData.address;
+        location.textContent = weatherData.resolvedAddress;
 
         const temperature = document.createElement("h2");
         temperature.textContent = data.temp;
