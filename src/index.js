@@ -5,6 +5,9 @@ import "./style.css";
 
 import sunny from "./icons/sunny.svg";
 import waterDrop from "./icons/water_drop.svg";
+import humidityIcon from "./icons/humidity.svg";
+import pressureIcon from "./icons/pressure.svg";
+import visibilityIcon from "./icons/visibility.svg";
 
 function weatherApp() {
     async function getWeatherData(local) {
@@ -249,7 +252,20 @@ async function weatherScreenController() {
         return percentageContainer;
     }
 
-    function displayWeatherConditions() {}
+    function displayWeatherConditions(data) {
+        const container = document.createElement("div");
+        console.log(data);
+
+        const uvIndex = weatherConditionDetails(
+            sunny,
+            "Uv Index",
+            data.uvindex
+        );
+
+        childAppender(container, uvIndex);
+
+        return container;
+    }
 
     function weatherConditionDetails(icon, text, data) {
         const container = document.createElement("div");
@@ -266,8 +282,8 @@ async function weatherScreenController() {
 
         const info = document.createElement("h4");
 
-        switch (text.toLowercase()) {
-            case "uvindex":
+        switch (text.toLowerCase()) {
+            case "uv index":
                 if (data <= 2) {
                     info.textContent = "Low";
                 } else if (data >= 3 && data <= 5) {
@@ -315,9 +331,12 @@ async function weatherScreenController() {
     function buildWeatherAppScreen() {
         const details = displayWeatherDetails(weatherData);
         const weatherTrend = displayCurrentWeatherTrends(weatherData);
+        const weatherConditions = displayWeatherConditions(
+            weatherData.currentConditions
+        );
 
         body.innerHTML = "";
-        childAppender(body, details, weatherTrend);
+        childAppender(body, details, weatherTrend, weatherConditions);
     }
 
     // buildWeatherAppScreen();
