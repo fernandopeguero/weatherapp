@@ -275,7 +275,13 @@ async function weatherScreenController() {
             data.humidity
         );
 
-        childAppender(container, uvIndex, windSpeed, humidity);
+        const pressure = weatherConditionDetails(
+            pressureIcon,
+            "Pressure",
+            data.pressure
+        );
+
+        childAppender(container, uvIndex, windSpeed, humidity, pressure);
 
         return container;
     }
