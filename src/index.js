@@ -3,13 +3,20 @@ import "./style.css";
 
 // weather icons
 
-import sunny from "./icons/sunny.svg";
+import sunnyIcon from "./icons/sunny.svg";
 import waterDrop from "./icons/water_drop.svg";
 import humidityIcon from "./icons/humidity.svg";
 import pressureIcon from "./icons/pressure.svg";
 import visibilityIcon from "./icons/visibility.svg";
 import windSpeedIcon from "./icons/air.svg";
 import airWaveIcon from "./icons/air_wave.svg";
+import fuggyIcon from "./icons/foggy.svg";
+import rainShowerIcon from "./icons/rain_shower.svg";
+import thunderstormIcon from "./icons/thunderstorm.svg";
+import partyCloudyIcon from "./icons/partly_cloudy.svg";
+import cloudyIcon from "./icons/clouds.svg";
+import rainIcon from "./icons/rainy.svg";
+import cloudyNightIcon from "./icons/cloudy_night.svg";
 
 function weatherApp() {
     async function getWeatherData(local) {
@@ -132,6 +139,22 @@ async function weatherScreenController() {
 
     let currentLocation = "bronx";
 
+    const weatherConditions = {
+        Clear: sunnyIcon,
+        "Partly Cloudy": partyCloudyIcon,
+        "Mostly Cloudy": cloudyIcon,
+        Fog: fuggyIcon,
+        "Light Rain": rainIcon,
+        Rain: rainIcon,
+        "Heavy Rain": rainShowerIcon,
+        Snow: sunnyIcon,
+        Thunderstorms: thunderstormIcon,
+        Windy: windSpeedIcon,
+        Drizzle: rainIcon,
+        "Freezing Rain": rainIcon,
+        Mist: fuggyIcon,
+    };
+
     const weatherData = await weatherController.getWeatherData(currentLocation);
 
     function displayWeatherDetails(data) {
@@ -173,7 +196,7 @@ async function weatherScreenController() {
 
     function currentWeatherIcon(data) {
         const icon = document.createElement("img");
-        icon.src = sunny;
+        icon.src = sunnyIcon;
 
         return icon;
     }
@@ -259,7 +282,7 @@ async function weatherScreenController() {
         container.classList.add("weather_details_container");
 
         const uvIndex = weatherConditionDetails(
-            sunny,
+            sunnyIcon,
             "Uv Index",
             data.uvindex
         );
