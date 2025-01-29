@@ -62,7 +62,7 @@ function weatherApp() {
                 dayString = "Wednesday";
                 break;
             case 3:
-                dayString = "Thrusday";
+                dayString = "Thursday";
                 break;
             case 4:
                 dayString = "Friday";
@@ -156,6 +156,16 @@ async function weatherScreenController() {
         "Freezing Rain": rainIcon,
         Mist: fuggyIcon,
     };
+
+    const daysOfTheWeekList = [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+    ];
 
     const weatherData = await weatherController.getWeatherData(currentLocation);
 
@@ -400,7 +410,8 @@ async function weatherScreenController() {
 
         const weatherData = weatherController.getWeekWeather(data);
 
-        createWeekElement(weatherData);
+        const daysList = createWeekElement(weatherData);
+        container.appendChild(daysList);
 
         return container;
     }
@@ -410,10 +421,48 @@ async function weatherScreenController() {
         list.classList.add("week_list");
 
         console.log(data);
+
+        for (const currentDay of daysOfTheWeekList) {
+            const today = data[currentDay];
+
+            const listItem = createWeekListItem(currentDay, today);
+
+            list.appendChild(listItem);
+        }
+
+        return list;
     }
 
-    function createWeekListItem(data) {
+    function createWeekListItem(currentDay, data) {
         const li = document.createElement("li");
+
+        const day = document.createElement("h4");
+        day.textContent = currentDay;
+
+        const precipitation = createPrecipicationElement(data);
+
+        const conditions =
+            weatherConditionDetails[data.conditions] || sunnyIcon;
+        const conditionsImage = document.createElement("img");
+        conditionsImage.src = conditions;
+
+        const todaysLow = document.createElement("h4");
+        todaysLow.textContent = data.tempmin;
+        console.log(data.tempmin);
+
+        const todaysHigh = document.createElement("h4");
+        todaysHigh.textContent = data.tempmax;
+
+        childAppender(
+            li,
+            day,
+            precipitation,
+            conditionsImage,
+            todaysLow,
+            todaysHigh
+        );
+
+        return li;
     }
 
     function displaySunsetAndSunriseDetails() {}
