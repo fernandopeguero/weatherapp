@@ -126,9 +126,11 @@ function weatherAppController() {
     function formatTime(time) {
         return weather.formatWeatherTime(time);
     }
+
     return {
         getWeatherData,
         formatTime,
+        getWeekWeather: weather.getWeekWeatherData,
     };
 }
 
@@ -260,21 +262,27 @@ async function weatherScreenController() {
         percentageContainer.classList.add("percentage_container");
 
         for (const time of timeList) {
-            const percentageHolder = document.createElement("div");
-            percentageHolder.classList.add("percentage_holder");
-
-            const text = document.createElement("p");
-            text.textContent = time.precip + "%";
-
-            const waterIcon = document.createElement("img");
-            waterIcon.src = waterDrop;
-
-            childAppender(percentageHolder, waterIcon, text);
+            const percentageHolder = createPrecipicationElement(time);
 
             percentageContainer.appendChild(percentageHolder);
         }
 
         return percentageContainer;
+    }
+
+    function createPrecipicationElement(time) {
+        const percentageHolder = document.createElement("div");
+        percentageHolder.classList.add("percentage_holder");
+
+        const text = document.createElement("p");
+        text.textContent = time.precip + "%";
+
+        const waterIcon = document.createElement("img");
+        waterIcon.src = waterDrop;
+
+        childAppender(percentageHolder, waterIcon, text);
+
+        return percentageHolder;
     }
 
     function displayWeatherConditions(data) {
@@ -386,7 +394,21 @@ async function weatherScreenController() {
         return container;
     }
 
-    function displayDaysOfWeekWeather() {}
+    function displayDaysOfWeekWeather() {
+        const container = document.createElement("section");
+        container.classList.add("days_container");
+
+        createWeekElement();
+    }
+
+    function createWeekElement(data) {
+        const list = document.createElement("ul");
+        list.classList.add("week_list");
+    }
+
+    function createWeekListItem(data) {
+        const li = document.createElement("li");
+    }
 
     function displaySunsetAndSunriseDetails() {}
 
