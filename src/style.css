@@ -103,3 +103,26 @@ html {
       }
     }
   }
+
+  .days_container {
+
+    .week_list {
+      background-color: rgba(14, 47, 132, 0.5);
+      max-width: 400px;
+      padding: var(--pd-medium);
+      border-radius: var(--pd-medium);
+
+      li {
+
+        display: grid;
+        grid-template-columns: 1.5fr repeat(4, 1fr);
+        padding: var(--pd-small) 0;
+        gap: var(--pd-small);
+      }
+
+      .percentage_holder {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }

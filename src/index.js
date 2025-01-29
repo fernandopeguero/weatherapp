@@ -285,7 +285,7 @@ async function weatherScreenController() {
         percentageHolder.classList.add("percentage_holder");
 
         const text = document.createElement("p");
-        text.textContent = time.precip + "%";
+        text.textContent = time.precip.toFixed(1) + "%";
 
         const waterIcon = document.createElement("img");
         waterIcon.src = waterDrop;
