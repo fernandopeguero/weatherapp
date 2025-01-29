@@ -83,7 +83,7 @@ function weatherApp() {
     function getWeekWeatherData(data) {
         const days = {};
 
-        for (let i = 1; i <= 6; i++) {
+        for (let i = 1; i <= 7; i++) {
             const current = data.days[i];
 
             const dayOfTheWeek = getDayOfTheWeek(
@@ -394,16 +394,22 @@ async function weatherScreenController() {
         return container;
     }
 
-    function displayDaysOfWeekWeather() {
+    function displayDaysOfWeekWeather(data) {
         const container = document.createElement("section");
         container.classList.add("days_container");
 
-        createWeekElement();
+        const weatherData = weatherController.getWeekWeather(data);
+
+        createWeekElement(weatherData);
+
+        return container;
     }
 
     function createWeekElement(data) {
         const list = document.createElement("ul");
         list.classList.add("week_list");
+
+        console.log(data);
     }
 
     function createWeekListItem(data) {
@@ -421,8 +427,16 @@ async function weatherScreenController() {
             weatherData.currentConditions
         );
 
+        const daysOfWeeks = displayDaysOfWeekWeather(weatherData);
+
         body.innerHTML = "";
-        childAppender(body, details, weatherTrend, weatherConditions);
+        childAppender(
+            body,
+            details,
+            weatherTrend,
+            weatherConditions,
+            daysOfWeeks
+        );
     }
 
     // buildWeatherAppScreen();
