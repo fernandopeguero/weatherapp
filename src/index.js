@@ -484,6 +484,19 @@ async function weatherScreenController() {
         return container;
     }
 
+    function getTimeComponents(timeString) {
+        const [militaryHours, minutes, seconds] = timeString
+            .split(":")
+            .map(Number);
+
+        let regularHours = militaryHours;
+        if (Number(militaryHours) > 12) {
+            regularHours = militaryHours - 12;
+        }
+
+        return { regularHour, minutes, seconds };
+    }
+
     function displaySubSectionDetails(section) {}
 
     function buildWeatherAppScreen() {
