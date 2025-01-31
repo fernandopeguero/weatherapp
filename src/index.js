@@ -440,7 +440,7 @@ async function weatherScreenController() {
         day.textContent = currentDay;
 
         const precipitation = createPrecipicationElement(data);
-        debugger;
+
         const currentConditions = data.conditions.split(",")[0];
 
         const conditions = weatherConditions[currentConditions] || sunnyIcon;
@@ -466,7 +466,23 @@ async function weatherScreenController() {
         return li;
     }
 
-    function displaySunsetAndSunriseDetails() {}
+    function displaySunsetAndSunriseDetails(data) {
+        const container = document.createElement("section");
+        container.classList.add("day_cycle_container");
+
+        const sunrise = document.createElement("h2");
+        sunrise.classList.add("sunrise");
+
+        const sunset = document.createElement("sunset");
+        sunset.classList.add("sunset");
+
+        const img = document.createElement("img");
+        img.src = sunnyIcon;
+
+        childAppender(container, sunrise, img, sunset);
+
+        return container;
+    }
 
     function displaySubSectionDetails(section) {}
 
