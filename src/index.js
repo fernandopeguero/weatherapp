@@ -143,17 +143,17 @@ async function weatherScreenController() {
 
     const weatherConditions = {
         Clear: sunnyIcon,
-        "Partly Cloudy": partyCloudyIcon,
-        "Mostly Cloudy": cloudyIcon,
+        "Partially cloudy": partyCloudyIcon,
+        "Mostly cloudy": cloudyIcon,
         Fog: fuggyIcon,
-        "Light Rain": rainIcon,
+        "Light rain": rainIcon,
         Rain: rainIcon,
-        "Heavy Rain": rainShowerIcon,
+        "Heavy rain": rainShowerIcon,
         Snow: sunnyIcon,
         Thunderstorms: thunderstormIcon,
         Windy: windSpeedIcon,
         Drizzle: rainIcon,
-        "Freezing Rain": rainIcon,
+        "Freezing rain": rainIcon,
         Mist: fuggyIcon,
     };
 
@@ -440,9 +440,10 @@ async function weatherScreenController() {
         day.textContent = currentDay;
 
         const precipitation = createPrecipicationElement(data);
+        debugger;
+        const currentConditions = data.conditions.split(",")[0];
 
-        const conditions =
-            weatherConditionDetails[data.conditions] || sunnyIcon;
+        const conditions = weatherConditions[currentConditions] || sunnyIcon;
         const conditionsImage = document.createElement("img");
         conditionsImage.src = conditions;
 
