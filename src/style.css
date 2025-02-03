@@ -64,6 +64,7 @@ html {
   }
 
   .weather_trend_container {
+    border-radius: var(--pd-small);
     grid-column: 1 / 4;
     grid-row: 2;
     padding: var(--pd-large);
@@ -96,7 +97,7 @@ html {
 
     grid-column: 1 / 4;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 
     .details_container {
 
@@ -142,5 +143,8 @@ html {
     grid-column: 2 / 4;
     display: flex;
     justify-content: center;
+    background-color: var(--color-transparent-darkblue);
+    padding: var(--pd-large);
+    border-radius: var(--pd-small);
 
   }
