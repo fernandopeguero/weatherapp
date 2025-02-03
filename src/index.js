@@ -476,7 +476,7 @@ async function weatherScreenController() {
         sunrise.textContent = `${sunriseTime.hours}:${sunriseTime.minutes} AM`;
 
         const sunsetTime = getTimeComponents(data.sunset);
-        const sunset = document.createElement("sunset");
+        const sunset = document.createElement("h2");
         sunset.classList.add("sunset");
         sunset.textContent = `${sunsetTime.hours}:${sunsetTime.minutes} PM`;
 
