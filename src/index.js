@@ -194,7 +194,7 @@ async function weatherScreenController() {
         location.textContent = weatherData.resolvedAddress;
 
         const temperature = document.createElement("h2");
-        temperature.textContent = data.temp;
+        temperature.textContent = data.temp + "°";
 
         const description = document.createElement("p");
         description.textContent = data.description;
@@ -257,8 +257,16 @@ async function weatherScreenController() {
     function weatherTrendByHour(data) {
         const canvas = document.createElement("canvas");
         canvas.id = "myCanvas";
-        canvas.width = "200";
-        canvas.height = "200";
+        canvas.width = "100";
+        canvas.height = "100";
+
+        const ctx = canvas.getContext("2d");
+        ctx.moveTo(0, 100);
+
+        ctx.lineTo(100, 100);
+        ctx.strokeStyle = "white";
+        ctx.lineWidth = 5;
+        ctx.stroke();
 
         return canvas;
     }
