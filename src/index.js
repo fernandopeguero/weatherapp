@@ -285,7 +285,7 @@ async function weatherScreenController() {
         percentageHolder.classList.add("percentage_holder");
 
         const text = document.createElement("p");
-        text.textContent = time.precip.toFixed(1) + "%";
+        text.textContent = Math.floor(time.precip) + "%";
 
         const waterIcon = document.createElement("img");
         waterIcon.src = waterDrop;
@@ -470,11 +470,15 @@ async function weatherScreenController() {
         const container = document.createElement("section");
         container.classList.add("day_cycle_container");
 
+        const sunriseTime = getTimeComponents(data.sunrise);
         const sunrise = document.createElement("h2");
         sunrise.classList.add("sunrise");
+        sunrise.textContent = `${sunriseTime.hours}:${sunriseTime.minutes} AM`;
 
+        const sunsetTime = getTimeComponents(data.sunset);
         const sunset = document.createElement("sunset");
         sunset.classList.add("sunset");
+        sunset.textContent = `${sunsetTime.hours}:${sunsetTime.minutes} PM`;
 
         const img = document.createElement("img");
         img.src = sunnyIcon;
@@ -489,12 +493,12 @@ async function weatherScreenController() {
             .split(":")
             .map(Number);
 
-        let regularHours = militaryHours;
+        let hours = militaryHours;
         if (Number(militaryHours) > 12) {
-            regularHours = militaryHours - 12;
+            hours = militaryHours - 12;
         }
 
-        return { regularHour, minutes, seconds };
+        return { hours, minutes, seconds };
     }
 
     function displaySubSectionDetails(section) {}
@@ -508,13 +512,18 @@ async function weatherScreenController() {
 
         const daysOfWeeks = displayDaysOfWeekWeather(weatherData);
 
+        const dayCycle = displaySunsetAndSunriseDetails(
+            weatherData.currentConditions
+        );
+
         body.innerHTML = "";
         childAppender(
             body,
             details,
             weatherTrend,
             weatherConditions,
-            daysOfWeeks
+            daysOfWeeks,
+            dayCycle
         );
     }
 
