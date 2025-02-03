@@ -31,6 +31,7 @@ html {
     --color-turquoise: #48A6A7;
     --color-darkblue: #2973B2;
     --color-darkerblue: #16468E;
+    --color-transparent-darkblue: rgba(14, 47, 132, 0.5);
 
     /* padding size  */
 
@@ -59,6 +60,8 @@ html {
 
   .weather_trend_container {
 
+    padding: var(--pd-large);
+    background-color: var(--color-transparent-darkblue);
 
     .time_container {
       display: flex;
@@ -68,7 +71,7 @@ html {
 
     canvas {
       width: 100%;
-      height: 200px;
+      height: 150px;
     }
 
     .percentage_container {
@@ -89,7 +92,7 @@ html {
 
     .details_container {
 
-      background-color: rgba(14, 47, 132, 0.5);
+      background-color: var(--color-transparent-darkblue);
       padding: var(--pd-medium);
       border-radius: var(--pd-small);
       
@@ -107,7 +110,7 @@ html {
   .days_container {
 
     .week_list {
-      background-color: rgba(14, 47, 132, 0.5);
+      background-color: var(--color-transparent-darkblue);
       max-width: 400px;
       padding: var(--pd-medium);
       border-radius: var(--pd-medium);
