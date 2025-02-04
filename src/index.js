@@ -243,10 +243,16 @@ async function weatherScreenController() {
         timeContainer.classList.add("time_container");
 
         for (const time of timeList) {
+            const container = document.createElement("div");
+
             const h4 = document.createElement("h4");
             h4.textContent = weatherController.formatTime(time.datetime);
 
-            timeContainer.appendChild(h4);
+            const temp = document.createElement("h4");
+            temp.textContent = time.temp + "°";
+
+            childAppender(container, h4, temp);
+            timeContainer.appendChild(container);
         }
 
         return timeContainer;
