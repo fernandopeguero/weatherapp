@@ -261,16 +261,16 @@ async function weatherScreenController() {
         canvas.height = "100";
 
         const ctx = canvas.getContext("2d");
-        ctx.moveTo(0, 100);
+        // ctx.moveTo(0, 100);
 
         let progress = 0;
         for (const hour of data.hours) {
-            ctx.lineTo(progress, Math.floor(100 - hour.precipprob));
+            ctx.lineTo(progress, Math.floor(100 - hour.temp));
 
-            progress += 45;
+            progress += 50;
         }
 
-        ctx.lineTo(1100, 100);
+        // ctx.lineTo(1100, 100);
         ctx.strokeStyle = "white";
         ctx.lineWidth = 2;
         ctx.stroke();
