@@ -167,7 +167,7 @@ async function weatherScreenController() {
         "Sunday",
     ];
 
-    const weatherData = await weatherController.getWeatherData(currentLocation);
+    let weatherData = await weatherController.getWeatherData(currentLocation);
 
     function displayWeatherDetails(data) {
         const currentWeather = data.days[0];
@@ -517,26 +517,44 @@ async function weatherScreenController() {
         return { hours, minutes, seconds };
     }
 
-    function displaySubSectionDetails(section) {}
+    function displaySearchBar() {
+        const searchContainer = document.createElement("section");
+        searchContainer.classList.add("search_container");
 
-    function buildWeatherAppScreen() {
+        const search = document.createElement("input");
+        search.type = "text";
+        search.placeholder = "Location";
+
+        const button = document.createElement("button");
+        button.type = "button";
+        button.textContent = "Submit";
+
+        button.addEventListener("click", () => {});
+
+        childAppender(searchContainer, search, button);
+
+        return searchContainer;
+    }
+
+    function buildWeatherAppScreen(data) {
         const container = document.createElement("div");
         container.classList.add("weather_app_container");
 
-        const details = displayWeatherDetails(weatherData);
-        const weatherTrend = displayCurrentWeatherTrends(weatherData);
+        const details = displayWeatherDetails(data);
+        const weatherTrend = displayCurrentWeatherTrends(data);
         const weatherConditions = displayWeatherConditions(
-            weatherData.currentConditions
+            data.currentConditions
         );
 
-        const daysOfWeeks = displayDaysOfWeekWeather(weatherData);
+        const daysOfWeeks = displayDaysOfWeekWeather(data);
 
-        const dayCycle = displaySunsetAndSunriseDetails(
-            weatherData.currentConditions
-        );
+        const dayCycle = displaySunsetAndSunriseDetails(data.currentConditions);
+
+        const searchBar = displaySearchBar();
         childAppender(
             container,
             details,
+            searchBar,
             weatherTrend,
             weatherConditions,
             daysOfWeeks,
@@ -547,10 +565,14 @@ async function weatherScreenController() {
         childAppender(body, container);
     }
 
+    function startWeatherApp() {
+        buildWeatherAppScreen(weatherData);
+    }
+
     // buildWeatherAppScreen();
     return {
-        buildWeatherAppScreen,
+        startWeatherApp,
     };
 }
 
-weatherScreenController().then((data) => data.buildWeatherAppScreen());
+weatherScreenController().then((data) => data.startWeatherApp());
