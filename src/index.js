@@ -257,17 +257,25 @@ async function weatherScreenController() {
     function weatherTrendByHour(data) {
         const canvas = document.createElement("canvas");
         canvas.id = "myCanvas";
-        canvas.width = "100";
+        canvas.width = "1100";
         canvas.height = "100";
 
         const ctx = canvas.getContext("2d");
         ctx.moveTo(0, 100);
 
-        ctx.lineTo(100, 100);
+        let progress = 0;
+        for (const hour of data.hours) {
+            ctx.lineTo(progress, Math.floor(100 - hour.precipprob));
+
+            progress += 45;
+        }
+
+        ctx.lineTo(1100, 100);
         ctx.strokeStyle = "white";
-        ctx.lineWidth = 5;
+        ctx.lineWidth = 2;
         ctx.stroke();
 
+        console.log("data", data.hours);
         return canvas;
     }
 
@@ -293,7 +301,7 @@ async function weatherScreenController() {
         percentageHolder.classList.add("percentage_holder");
 
         const text = document.createElement("p");
-        text.textContent = Math.floor(time.precip) + "%";
+        text.textContent = Math.floor(time.precipprob) + "%";
 
         const waterIcon = document.createElement("img");
         waterIcon.src = waterDrop;
@@ -512,6 +520,9 @@ async function weatherScreenController() {
     function displaySubSectionDetails(section) {}
 
     function buildWeatherAppScreen() {
+        const container = document.createElement("div");
+        container.classList.add("weather_app_container");
+
         const details = displayWeatherDetails(weatherData);
         const weatherTrend = displayCurrentWeatherTrends(weatherData);
         const weatherConditions = displayWeatherConditions(
@@ -523,16 +534,17 @@ async function weatherScreenController() {
         const dayCycle = displaySunsetAndSunriseDetails(
             weatherData.currentConditions
         );
-
-        body.innerHTML = "";
         childAppender(
-            body,
+            container,
             details,
             weatherTrend,
             weatherConditions,
             daysOfWeeks,
             dayCycle
         );
+
+        body.innerHTML = "";
+        childAppender(body, container);
     }
 
     // buildWeatherAppScreen();
