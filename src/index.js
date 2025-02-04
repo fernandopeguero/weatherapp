@@ -535,7 +535,15 @@ async function weatherScreenController() {
         button.type = "button";
         button.textContent = "Submit";
 
-        button.addEventListener("click", () => {});
+        button.addEventListener("click", async () => {
+            currentLocation = search.value.trim();
+
+            weatherData = await weatherController.getWeatherData(
+                currentLocation
+            );
+
+            buildWeatherAppScreen(weatherData);
+        });
 
         childAppender(searchContainer, search, button);
 
