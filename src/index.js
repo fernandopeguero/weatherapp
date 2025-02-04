@@ -118,8 +118,6 @@ function weatherAppController() {
     async function getWeatherData(location) {
         const data = await weather.getWeatherData(location);
 
-        console.log(data);
-
         return data;
     }
 
@@ -281,7 +279,6 @@ async function weatherScreenController() {
         ctx.lineWidth = 2;
         ctx.stroke();
 
-        console.log("data", data.hours);
         return canvas;
     }
 
@@ -442,8 +439,6 @@ async function weatherScreenController() {
         const list = document.createElement("ul");
         list.classList.add("week_list");
 
-        console.log(data);
-
         for (const currentDay of daysOfTheWeekList) {
             const today = data[currentDay];
 
@@ -471,7 +466,6 @@ async function weatherScreenController() {
 
         const todaysLow = document.createElement("h4");
         todaysLow.textContent = data.tempmin;
-        console.log(data.tempmin);
 
         const todaysHigh = document.createElement("h4");
         todaysHigh.textContent = data.tempmax;
@@ -536,13 +530,17 @@ async function weatherScreenController() {
         button.textContent = "Submit";
 
         button.addEventListener("click", async () => {
-            currentLocation = search.value.trim();
+            const value = search.value.trim();
 
-            weatherData = await weatherController.getWeatherData(
-                currentLocation
-            );
+            if (value != "") {
+                currentLocation = search.value.trim();
 
-            buildWeatherAppScreen(weatherData);
+                weatherData = await weatherController.getWeatherData(
+                    currentLocation
+                );
+
+                buildWeatherAppScreen(weatherData);
+            }
         });
 
         childAppender(searchContainer, search, button);
