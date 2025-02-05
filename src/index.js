@@ -489,12 +489,12 @@ async function weatherScreenController() {
         const sunriseTime = getTimeComponents(data.sunrise);
         const sunrise = document.createElement("h2");
         sunrise.classList.add("sunrise");
-        sunrise.textContent = `${sunriseTime.hours}:${sunriseTime.minutes} AM`;
+        sunrise.textContent = `Sunrise - ${sunriseTime.hours}:${sunriseTime.minutes} AM`;
 
         const sunsetTime = getTimeComponents(data.sunset);
         const sunset = document.createElement("h2");
         sunset.classList.add("sunset");
-        sunset.textContent = `${sunsetTime.hours}:${sunsetTime.minutes} PM`;
+        sunset.textContent = `${sunsetTime.hours}:${sunsetTime.minutes} PM - Sunset`;
 
         const img = document.createElement("img");
         img.src = sunnyIcon;
