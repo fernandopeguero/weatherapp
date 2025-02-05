@@ -109,10 +109,10 @@ html {
       padding-right: var(--pd-extra-large);
 
       h1 {
-        font-size: 48px;
+        font-size: 36px;
       }
       h2 {
-        font-size: 36px;
+        font-size: 28px;
         margin-bottom: var(--pd-medium);
       }
 
