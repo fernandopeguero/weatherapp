@@ -40,21 +40,29 @@ Installation & Setup
 
 Clone the Repository:
 
+```
 git clone https://github.com/fernandopeguero/weatherapp.git
 cd weather-app
+```
 
 Install Dependencies:
 
+```
 npm install
+```
 
 Run the Development Server:
 
+```
 npm run start
+```
 
 This starts a live development server with hot-reloading.
 
 Build for Production:
 
+```
 npm run build
+```
 
 This generates an optimized build in the dist/ folder.
