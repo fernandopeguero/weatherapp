@@ -17,6 +17,7 @@ import partyCloudyIcon from "./icons/partly_cloudy.svg";
 import cloudyIcon from "./icons/clouds.svg";
 import rainIcon from "./icons/rainy.svg";
 import cloudyNightIcon from "./icons/cloudy_night.svg";
+import snowIcon from "./icons/snow.svg";
 
 function weatherApp() {
     async function getWeatherData(local) {
@@ -147,7 +148,7 @@ async function weatherScreenController() {
         "Light rain": rainIcon,
         Rain: rainIcon,
         "Heavy rain": rainShowerIcon,
-        Snow: sunnyIcon,
+        Snow: snowIcon,
         Thunderstorms: thunderstormIcon,
         Windy: windSpeedIcon,
         Drizzle: rainIcon,
@@ -424,6 +425,7 @@ async function weatherScreenController() {
     }
 
     function displayDaysOfWeekWeather(data) {
+        console.log(data);
         const container = document.createElement("section");
         container.classList.add("days_container");
 
