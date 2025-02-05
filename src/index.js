@@ -251,7 +251,7 @@ async function weatherScreenController() {
             icon.src = weatherConditions[time.conditions] || sunnyIcon;
 
             const temp = document.createElement("h4");
-            temp.textContent = time.temp + "°";
+            temp.textContent = Math.floor(time.temp) + "°";
 
             childAppender(container, h4, icon, temp);
             timeContainer.appendChild(container);
