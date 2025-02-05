@@ -206,7 +206,7 @@ async function weatherScreenController() {
 
     function currentWeatherIcon(data) {
         const icon = document.createElement("img");
-        icon.src = sunnyIcon;
+        icon.src = weatherConditions[data.conditions] || sunnyIcon;
 
         return icon;
     }
