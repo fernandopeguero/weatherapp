@@ -285,6 +285,10 @@ html {
       .week_list {
         max-width: 100%;
         min-width: 350px;
+
+        h4 {
+          font-weight: bold;
+        }
       }
     }
 
