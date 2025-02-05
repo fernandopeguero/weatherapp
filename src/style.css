@@ -141,8 +141,10 @@ html {
         align-items: center;
         flex-direction: column;
 
-        h4:first-of-type {
-          margin-bottom: var(--pd-medium);
+        img {
+          width: 28px;
+          height: auto;
+          margin: var(--pd-small) 0;
         }
 
         h4:last-of-type {

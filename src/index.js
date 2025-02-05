@@ -247,10 +247,13 @@ async function weatherScreenController() {
             const h4 = document.createElement("h4");
             h4.textContent = weatherController.formatTime(time.datetime);
 
+            const icon = document.createElement("img");
+            icon.src = weatherConditions[time.conditions] || sunnyIcon;
+
             const temp = document.createElement("h4");
             temp.textContent = time.temp + "°";
 
-            childAppender(container, h4, temp);
+            childAppender(container, h4, icon, temp);
             timeContainer.appendChild(container);
         }
 
