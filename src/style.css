@@ -127,7 +127,7 @@ html {
     border-radius: var(--pd-small);
     grid-column: 1 / 4;
     grid-row: 2;
-    padding: var(--pd-large);
+    padding: var(--pd-medium);
     background-color: var(--color-transparent-darkblue);
 
 
