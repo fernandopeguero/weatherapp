@@ -101,7 +101,7 @@ function weatherApp() {
         // split the time and convert it to a int
         const time = Number(data.split(":")[0]);
 
-        return time <= 12 ? time + " AM" : time - 12 + " PM";
+        return time <= 12 ? time + ":AM" : time - 12 + ":PM";
     }
 
     return {
