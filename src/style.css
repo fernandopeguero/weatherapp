@@ -99,7 +99,7 @@ html {
     display: flex;
 
     img {
-      width: 100px;
+      width: clamp(1rem, -4.625rem + 60vw, 6.625rem);
       height: auto;
     }
 
