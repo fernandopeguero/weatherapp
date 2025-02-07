@@ -97,10 +97,11 @@ html {
   .weather_container {
     grid-column: 1 / 3;
     display: flex;
-
+    
     img {
       width: clamp(1rem, -4.625rem + 60vw, 6.625rem);
       height: auto;
+      
     }
 
     .temperature_details {
@@ -253,6 +254,12 @@ html {
     .weather_container {
       grid-column: 1 / 4;
       grid-row-start: 2;
+      justify-content: space-between;
+      padding: var(--pd-medium) var(--pd-small);
+
+      img {
+        margin-right: var(--pd-large);
+      }
     }
 
     .search_container {
