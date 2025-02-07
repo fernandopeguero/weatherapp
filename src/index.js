@@ -11,8 +11,6 @@ import visibilityIcon from "./icons/visibility.svg";
 import windSpeedIcon from "./icons/air.svg";
 import airWaveIcon from "./icons/air_wave.svg";
 import fuggyIcon from "./icons/foggy.svg";
-import rainShowerIcon from "./icons/rain_shower.svg";
-import thunderstormIcon from "./icons/thunderstorm.svg";
 import partyCloudyIcon from "./icons/partly_cloudy.svg";
 import cloudyIcon from "./icons/clouds.svg";
 import rainIcon from "./icons/rainy.svg";
@@ -140,22 +138,6 @@ async function weatherScreenController() {
     const weatherController = weatherAppController();
 
     let currentLocation = "bronx";
-
-    // const weatherConditions = {
-    //     Clear: sunnyIcon,
-    //     "Partially cloudy": partyCloudyIcon,
-    //     "Mostly cloudy": cloudyIcon,
-    //     Fog: fuggyIcon,
-    //     "Light rain": rainIcon,
-    //     Rain: rainIcon,
-    //     "Heavy rain": rainShowerIcon,
-    //     Snow: snowIcon,
-    //     Thunderstorms: thunderstormIcon,
-    //     Windy: windSpeedIcon,
-    //     Drizzle: rainIcon,
-    //     "Freezing rain": rainIcon,
-    //     Mist: fuggyIcon,
-    // };
 
     const weatherConditions = {
         snow: snowIcon,
