@@ -18,6 +18,7 @@ import cloudyIcon from "./icons/clouds.svg";
 import rainIcon from "./icons/rainy.svg";
 import cloudyNightIcon from "./icons/cloudy_night.svg";
 import snowIcon from "./icons/snow.svg";
+import moonIcon from "./icons/moon.svg";
 
 function weatherApp() {
     async function getWeatherData(local) {
@@ -140,20 +141,32 @@ async function weatherScreenController() {
 
     let currentLocation = "bronx";
 
+    // const weatherConditions = {
+    //     Clear: sunnyIcon,
+    //     "Partially cloudy": partyCloudyIcon,
+    //     "Mostly cloudy": cloudyIcon,
+    //     Fog: fuggyIcon,
+    //     "Light rain": rainIcon,
+    //     Rain: rainIcon,
+    //     "Heavy rain": rainShowerIcon,
+    //     Snow: snowIcon,
+    //     Thunderstorms: thunderstormIcon,
+    //     Windy: windSpeedIcon,
+    //     Drizzle: rainIcon,
+    //     "Freezing rain": rainIcon,
+    //     Mist: fuggyIcon,
+    // };
+
     const weatherConditions = {
-        Clear: sunnyIcon,
-        "Partially cloudy": partyCloudyIcon,
-        "Mostly cloudy": cloudyIcon,
-        Fog: fuggyIcon,
-        "Light rain": rainIcon,
-        Rain: rainIcon,
-        "Heavy rain": rainShowerIcon,
-        Snow: snowIcon,
-        Thunderstorms: thunderstormIcon,
-        Windy: windSpeedIcon,
-        Drizzle: rainIcon,
-        "Freezing rain": rainIcon,
-        Mist: fuggyIcon,
+        snow: snowIcon,
+        rain: rainIcon,
+        fog: fuggyIcon,
+        wind: windSpeedIcon,
+        cloudy: cloudyIcon,
+        "partly-cloudy-day": partyCloudyIcon,
+        "partly-cloudy-night": cloudyNightIcon,
+        "clear-day": sunnyIcon,
+        "clear-night": moonIcon,
     };
 
     const daysOfTheWeekList = [
@@ -207,7 +220,7 @@ async function weatherScreenController() {
 
     function currentWeatherIcon(data) {
         const icon = document.createElement("img");
-        icon.src = weatherConditions[data.conditions] || sunnyIcon;
+        icon.src = weatherConditions[data.icon] || sunnyIcon;
 
         return icon;
     }
@@ -248,7 +261,7 @@ async function weatherScreenController() {
             h4.textContent = weatherController.formatTime(time.datetime);
 
             const icon = document.createElement("img");
-            icon.src = weatherConditions[time.conditions] || sunnyIcon;
+            icon.src = weatherConditions[time.icon] || sunnyIcon;
 
             const temp = document.createElement("h4");
             temp.textContent = Math.floor(time.temp) + "°";
@@ -463,9 +476,7 @@ async function weatherScreenController() {
 
         const precipitation = createPrecipicationElement(data);
 
-        const currentConditions = data.conditions.split(",")[0];
-
-        const conditions = weatherConditions[currentConditions] || sunnyIcon;
+        const conditions = weatherConditions[data.icon] || sunnyIcon;
         const conditionsImage = document.createElement("img");
         conditionsImage.src = conditions;
 
