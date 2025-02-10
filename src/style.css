@@ -99,12 +99,13 @@ html {
     display: flex;
     
     img {
-      width: clamp(1rem, -4.625rem + 60vw, 6.625rem);
+      width: 100%;
       height: auto;
-      
+      flex: 1;
     }
 
     .temperature_details {
+      flex: 2;
       padding-right: var(--pd-extra-large);
 
       h1 {
@@ -143,7 +144,7 @@ html {
         flex-direction: column;
 
         img {
-          width: 28px;
+          width: 100%;
           height: auto;
           margin: var(--pd-small) 0;
         }
@@ -212,7 +213,7 @@ html {
 
         display: grid;
         grid-template-columns: 1.5fr repeat(4, 1fr);
-        padding: var(--pd-small) 0;
+        padding: 4px 0;
         gap: var(--pd-small);
       }
 
@@ -222,7 +223,7 @@ html {
       }
 
       img {
-        width: 24px;
+        width: 36px;
         height: auto;
       }
     }
@@ -315,5 +316,17 @@ html {
       width: 100%;
       grid-row-start: 6;
       grid-column: 1 / 4;
+    }
+  }
+
+  @media(max-width: 700px) {
+    .weather_container {
+      flex-direction: column;
+      align-items: center;
+      gap: var(--pd-medium);
+
+      img {
+        width: 100%;
+      }
     }
   }
