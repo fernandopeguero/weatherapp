@@ -235,13 +235,13 @@ html {
     justify-content: center;
     align-items: center;
     background-color: var(--color-transparent-darkblue);
-    padding: var(--pd-large);
     border-radius: var(--pd-small);
 
     img {
       width: 300px;
       height: auto;
-      padding: 0 var(--pd-large);
+      object-fit: contain;
+      overflow: hidden;
     }
 
   }
