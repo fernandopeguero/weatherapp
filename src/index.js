@@ -12,7 +12,7 @@ import windSpeedIcon from "./icons/air.svg";
 import airWaveIcon from "./icons/air_wave.svg";
 import fuggyIcon from "./icons/foggy.svg";
 import partyCloudyIcon from "./icons/partly_cloudy.svg";
-import cloudyIcon from "./icons/clouds.svg";
+import cloudyIcon from "./icons/cloudy.svg";
 import rainIcon from "./icons/rainy.svg";
 import cloudyNightIcon from "./icons/cloudy_night.svg";
 import snowIcon from "./icons/snow.svg";
