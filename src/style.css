@@ -260,6 +260,8 @@ html {
     align-items: center;
     background-color: var(--color-transparent-darkblue);
     border-radius: var(--pd-small);
+    padding: var(--pd-small);
+    text-align: center;
 
     img {
       width: 300px;
