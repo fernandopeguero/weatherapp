@@ -66,3 +66,5 @@ npm run build
 ```
 
 This generates an optimized build in the dist/ folder.
+
+Animated icons By Amcharts.com
