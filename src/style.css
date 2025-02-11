@@ -58,6 +58,7 @@ html {
     grid-auto-rows: auto;
     gap: var(--pd-medium);
     max-width: 1200px;
+    padding: var(--pd-medium) 0;
   }
 
   .search_container {
@@ -216,6 +217,11 @@ html {
       h4 {
         padding-top: var(--pd-medium);
       }
+
+      img {
+        width: 24px;
+        height: auto;
+      }
     }
   }
 
@@ -260,6 +266,7 @@ html {
       height: auto;
       object-fit: contain;
       overflow: hidden;
+      object-fit: contain;
     }
 
   }
