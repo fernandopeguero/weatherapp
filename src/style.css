@@ -101,32 +101,38 @@ html {
     grid-column: 1 / 4;
     grid-row: 2;
     display: flex;
+    align-items: center;
+    justify-content: space-around;
     
-    img {
-      width: 100%;
-      height: auto;
-      flex: 1;
-    }
 
     .temperature_details {
-      flex: 2;
+
       padding-right: var(--pd-extra-large);
 
       h1 {
-        font-size: 36px;
+        font-size: 48px;
         font-weight: bold;
       }
       h2 {
         font-weight: bold;
-        font-size: 28px;
+        font-size: 36px;
         margin-bottom: var(--pd-medium);
       }
 
       p {
         font-weight: bold; 
+        color: #91C0F8;
       }
 
     }
+
+    img {
+      max-width: 400px;
+      width: 300px;
+      min-width: 150px;
+      height: auto;
+    }
+
   }
 
   .weather_trend_container {
