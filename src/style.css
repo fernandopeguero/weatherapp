@@ -262,6 +262,7 @@ html {
     border-radius: var(--pd-small);
     padding: var(--pd-small);
     text-align: center;
+    text-transform: uppercase;
 
     img {
       width: 300px;
@@ -269,6 +270,11 @@ html {
       object-fit: contain;
       overflow: hidden;
       object-fit: contain;
+    }
+
+    h2 {
+      font-weight: bold;
+      letter-spacing: 1.5px;
     }
 
   }
@@ -340,13 +346,11 @@ html {
     }
 
     .day_cycle_container {
-      width: 100%;
-      grid-row-start: 6;
       grid-column: 1 / 4;
     }
   }
 
-  @media(max-width: 700px) {
+  @media (max-width: 700px) {
     .weather_container {
       flex-direction: column;
       align-items: center;
@@ -355,5 +359,11 @@ html {
       img {
         width: 100%;
       }
+
+    }
+    .day_cycle_container {
+      padding: var(--pd-medium);
+      flex-direction: column;
+      justify-content: space-around;
     }
   }
