@@ -2,6 +2,7 @@
 
 A sleek and user-friendly Weather App that fetches real-time weather data using the Visual Crossing API. Built with a modular, decoupled architecture using Factory Functions, Asyncronous async await pattern, HTML, CSS, and JavaScript. Bundled with Webpack and enhanced with ESLint and Prettier for code quality.
 
+![Image](https://github.com/user-attachments/assets/49270fa7-68eb-4640-9876-b8d360e63e8f)
 ## Features
 
 -   Real-time Weather Data: Fetches current weather details from the Visual Crossing API.
